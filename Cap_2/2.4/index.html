@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>Test Suite</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    window.onload = function () {
+      assert(true, 'O conjunto de teste está sendo executado.')
+      assert(false, 'Teste falhou!')
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>

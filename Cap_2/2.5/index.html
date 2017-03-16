@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <title>Grupos de Testes</title>
+
+  <script>
+    (function () {
+      var resultado
+
+      this.assert = function assert(valor, mensagem) {
+        var li = document.createElement('li')
+        li.className = valor ? 'passou' : 'error'
+        li.appendChild(document.createTextNode(mensagem))
+        resultado.appendChild(li)
+
+        if (!valor) {
+          li.parentNode.parentNode.className = 'error'
+        }
+
+        return li
+      }
+
+      this.teste = function teste(nome, fn) {
+
+        resultado = document.getElementById('resultado')
+        resultado = assert(true, nome).appendChild(
+          document.createElement('ul'))
+
+        fn()
+      }
+    })()
+
+
+    window.onload = function () {
+      teste('O Teste', function () {
+        assert(true, 'Primeiro assertion completado.')
+        assert(true, 'Segundo assertion completado.')
+        assert(true, 'Terceiro assertion completado')
+      })
+
+      teste('Outro Teste', function () {
+        assert(true, 'Primeiro teste completado.')
+        assert(false, 'Segundo teste falhou!')
+        assert(true, 'Terceiro assertion completado')
+      })
+
+      teste('O Terceiro Teste', function () {
+        assert(null, 'Falhou!')
+        assert(5, 'Passou!')
+      })
+
+    }
+  </script>
+
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+
+
+</html>

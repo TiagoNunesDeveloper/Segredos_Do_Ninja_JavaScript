@@ -1,0 +1,101 @@
+<html>
+
+<head>
+  <title>Grupos de Testes Assíncrono</title>
+
+  <script>
+    (function () {
+
+      var queue = [],
+        pausado = false,
+        resultado
+
+      this.teste = function teste(nome, fn) {
+        queue.push(function () {
+          resultado = document.getElementById('resultado')
+          resultado = assert(true, nome).appendChild(
+            document.createElement('ul'))
+          fn()
+        })
+        rodarTeste()
+      }
+
+      this.pausa = function () {
+        pausado = true
+      }
+
+      this.resumo = function () {
+        pausado = false
+        setTimeout(rodarTeste(), 1)
+      }
+
+      function rodarTeste() {
+        if (!pausado && queue.length) {
+          queue.shift()()
+          if (!pausado) {
+            resumo()
+          }
+        }
+      }
+
+      this.assert = function assert(valor, mensagem) {
+        var li = document.createElement('li')
+        li.className = valor ? 'passou' : 'error'
+        li.appendChild(document.createTextNode(mensagem))
+        resultado.appendChild(li)
+
+        if (!valor) {
+          li.parentNode.parentNode.className = 'error'
+        }
+
+        return li
+      }
+    })()
+
+
+    window.onload = function () {
+      teste('Teste Async #1', function () {
+        pausa()
+        setTimeout(function () {
+          assert(true, 'Primeiro Teste Completado.')
+          resumo()
+        }, 1000)
+      })
+
+      teste('Teste Async #2', function () {
+        pausa()
+        setTimeout(function () {
+          assert(true, 'Segundo Teste Completado.')
+          resumo()
+        }, 1000)
+      })
+
+      teste('Teste Async #3', function () {
+        pausa()
+        setTimeout(function () {
+          assert(false, 'Terceiro Teste Falhou!')
+          resumo()
+        }, 1000)
+      })
+
+    }
+  </script>
+
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+
+
+</html>
