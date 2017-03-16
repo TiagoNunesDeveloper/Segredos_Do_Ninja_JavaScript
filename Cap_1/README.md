@@ -6,5 +6,3 @@
 * Realizações de Testes
 * Análise de Desempenho
 * Habilidade de Depuração
-
-
