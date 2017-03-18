@@ -1,0 +1,48 @@
+<html>
+
+<head>
+  <title>3.8</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+
+    window.onload = function () {
+
+      function Ninja() {
+        this.skulk = function () {
+          return this
+        }
+      }
+
+      var ninja1 = new Ninja()
+      var ninja2 = new Ninja()
+
+      assert(ninja1.skulk() === ninja1, 'The 1st ninja is skulking')
+      assert(ninja2.skulk() === ninja2, 'The 2nd ninja is skulking')
+
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>

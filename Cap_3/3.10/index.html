@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <title>3.10</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+
+    window.onload = function () {
+
+      function forEach(list, callback) {
+
+        if (!Array.isArray(list)) {
+          throw new Error('List não é um Array')
+        }
+
+        if (typeof callback !== 'function') {
+          throw new Error('Callback não é uma Function')
+        }
+
+        for (var i = 0; i < list.length; i++) {
+          callback.call(list[i], list[i], i, list)
+        }
+      }
+
+      var weapons = ['shuriken', 'katana', 'nunchucks', ]
+
+      forEach(weapons, function (item, index, array) {
+        assert(this == item, 'Got the expected value of ' + weapons[index])
+      })
+
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>

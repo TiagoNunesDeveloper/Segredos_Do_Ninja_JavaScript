@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <title>3.8</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+
+    window.onload = function () {
+
+      function juggle() {
+        var result = 0
+
+        for (var i = 0; i < arguments.length; i++) {
+          result += arguments[i]
+        }
+        this.result = result
+      }
+
+      var ninja1 = {}
+      var ninja2 = {}
+
+      juggle.apply(ninja1, [2, 5, 3, 10, 24])
+      juggle.call(ninja2, 5, 5, 5, 15, 10, 20)
+
+      assert(ninja1.result === 44, 'juggled via apply')
+      assert(ninja2.result === 60, 'juggled via call')
+
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>
