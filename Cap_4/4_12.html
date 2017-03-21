@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <title>4.12</title>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+
+  <script type="text/javascript">
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /**
+     * Travessia de listas de argumentos de comprimento variável
+     */
+
+    window.onload = function () {
+
+      function merge(root) {
+        for (var i = 1; i < arguments.length; i++) {
+          for (var key in arguments[i]) {
+            root[key] = arguments[i][key]
+          }
+        }
+        return root
+      }
+
+      var merged = merge({name: 'Baton'}, {city: 'Aracaju'})
+
+      assert(merged.name == 'Baton', 'The original name is intact.')
+      assert(merged.city == 'Aracaju', 'And the city has been copied over.')
+
+    }
+  </script>
+</body>
+
+</html>

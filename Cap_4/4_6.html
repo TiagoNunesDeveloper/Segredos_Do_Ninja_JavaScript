@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <title>4.6</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /**
+     * Verificação da identidade de uma função embutida
+     */
+
+    window.onload = function () {
+
+      var ninja = function myNinja() {
+        assert(ninja == myNinja, 'This function is named two things at once!')
+      }
+
+      ninja()
+
+      assert(typeof myNinja == 'undefined', 'But myNinja isn`t defined outside of the function')
+
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>

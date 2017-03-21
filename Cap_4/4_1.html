@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <title>4.1</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /*
+     * Exemplos comuns do uso de funções anônimas
+     */
+
+    window.onload = function () {
+      assert(true, 'Power!')
+
+      var ninja = {
+        shout: function () {
+          assert(true, 'Ninja!')
+        }
+      }
+
+      ninja.shout()
+
+      setTimeout(function () {
+        assert(true, 'Forever!')
+      }, 500)
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>

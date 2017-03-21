@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <title>4.8</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /**
+     *Armazenamento de uma coleção de funções exclusivas
+     */
+
+    window.onload = function () {
+
+      var store = {
+        nextId: 1,
+
+        cache: {},
+
+        add: function (fn) {
+          if (!fn.id) {
+            fn.id = store.nextId++
+              return !!(store.cache[fn.id] = fn)
+          }
+        }
+      }
+
+      function ninja() {}
+
+      assert(store.add(ninja), 'Function was safely added.')
+      assert(!store.add(ninja), 'But it was only added once.')
+
+      console.log(store.cache)
+
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>

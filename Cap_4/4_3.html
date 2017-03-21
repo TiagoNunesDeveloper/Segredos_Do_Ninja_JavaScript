@@ -1,0 +1,46 @@
+<html>
+
+<head>
+  <title>4.3</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /**
+     * Recursão de método dentro de um objeto
+    */
+
+    window.onload = function () {
+
+      var ninja = {
+        chirp: function (n) {
+          return n > 1 ? ninja.chirp(n - 1) + '-chirp' : 'chirp'
+        }
+      }
+      assert(ninja.chirp(3) == 'chirp-chirp-chirp', 'Calling the named function comes naturally')
+
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>

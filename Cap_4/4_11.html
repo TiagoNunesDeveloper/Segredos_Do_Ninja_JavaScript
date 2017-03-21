@@ -1,0 +1,50 @@
+<html>
+
+<head>
+  <title>4.11</title>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+
+  <script type="text/javascript">
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /**
+     * Funções min() e max genéricas para arrays
+     */
+
+    window.onload = function () {
+
+      function smallest(array) {
+        return Math.min.apply(Math, array)
+      }
+
+      function largest(array) {
+        return Math.max.apply(Math, array)
+      }
+
+      assert(smallest([0, 1, 2, 3, 4, 5]) == 0, 'Located the smallest value.')
+      assert(largest([0, 1, 2, 3, 4, 5, 6]) == 6, 'Located the largest value.')
+    }
+  </script>
+</body>
+
+</html>

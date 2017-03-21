@@ -1,0 +1,71 @@
+<html>
+
+<head>
+  <title>4.10</title>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+
+  <input id="first">
+  <input id="second">
+
+  <script type="text/javascript">
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /**
+     * Simulação de métodos de tipo array
+     */
+
+    window.onload = function () {
+
+      var elems = {
+        length: 0,
+
+        add: function (elem) {
+          Array.prototype.push.call(this, elem)
+        },
+
+        gather: function (id) {
+          this.add(document.getElementById(id))
+        }
+      }
+
+      /**
+       *var $inputs = document.querySelectorAll('input');
+       *Array.prototype.forEach.call($inputs, function(i, item){
+       *  elems.gather(i.id)
+       *  assert(elems.length == item + 1 && elems[item].nodeType, 'Verify element!')
+       *})
+       */
+
+      elems.gather('first')
+      assert(elems.length == 1 && elems[0].nodeType, 'Verify that we have an element in our stash')
+
+      elems.gather('second')
+      assert(elems.length == 2 && elems[1].nodeType, 'Verify the other insertion')
+
+
+
+    }
+  </script>
+</body>
+
+</html>

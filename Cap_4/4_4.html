@@ -1,0 +1,56 @@
+<html>
+
+<head>
+  <title>4.4</title>
+  <script>
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /**
+     * Recursão utilizando uma referência de função faltante
+    */
+
+    window.onload = function () {
+
+      var ninja = {
+        chirp: function (n) {
+          return n > 1 ? this.chirp(n - 1) + '-chirp' : 'chirp'
+        }
+      }
+
+      var samurai = {
+        chirp: ninja.chirp
+      }
+
+      ninja = {}
+
+      try {
+        assert(samurai.chirp(3) === 'chirp-chirp-chirp', 'Is this going to work?')
+      } catch (error) {
+        assert(false, 'Uh, this isn`t good! Where`d ninja.chirp go?')
+      }
+    }
+  </script>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+</body>
+
+</html>

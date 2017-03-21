@@ -1,0 +1,46 @@
+<html>
+
+<head>
+  <title>4.13</title>
+  <style>
+    #resultado li.passou {
+      color: green
+    }
+
+    #resultado li.error {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="resultado"></ul>
+
+  <script type="text/javascript">
+    /**
+     * Define o método de assert
+     */
+    function assert(valor, mensagem) {
+      var li = document.createElement('li')
+      li.className = valor ? 'passou' : 'error'
+      li.appendChild(document.createTextNode(mensagem))
+      document.getElementById('resultado').appendChild(li)
+    }
+
+    /**
+     * Decomposição da lista de argumentos
+     */
+
+    window.onload = function () {
+
+      function multiMax(multi) {
+        return multi * Math.max.apply(Math, arguments.slice(1))
+      }
+
+      assert(multiMax(3, 1, 2, 3) === 9, '3*3=9 (First arg, by largest).')
+
+    }
+  </script>
+</body>
+
+</html>
